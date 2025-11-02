@@ -1,0 +1,17 @@
+// SPDX-License-Identifier: MIT
+pragma solidity 0.8.30;
+
+contract Exceptionsexample{
+    mapping (address => uint8) public balance;
+
+    function deposit() public  payable{
+        assert(msg.value == uint8(msg.value));
+        balance[msg.sender] += uint8(msg.value);
+    }
+
+    function withdrawmoney(address payable _to, uint8 _amount) public {
+        require(_amount <= balance[msg.sender],"not enough balance, aborting!");
+        balance[msg.sender] -= _amount;
+        _to.transfer(_amount);
+    }
+}
